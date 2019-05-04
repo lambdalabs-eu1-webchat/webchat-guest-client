@@ -5,7 +5,8 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-
+// requests
+import { loginRequest } from '../requests/ajax';
 const StyledLoginView = styled.div`
   width: 500px;
   margin: 0 auto;
@@ -22,9 +23,19 @@ class LoginView extends React.Component {
     const value = event.target.value;
     this.setState(currentState => {
       currentState[input] = value;
-      debugger;
       return currentState;
     });
+  };
+
+  login = event => {
+    event.preventDefault();
+    loginRequest(this.state.name, this.state.passcode)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -55,7 +66,13 @@ class LoginView extends React.Component {
               onChange={event => this.handleChange(event, 'passcodeInput')}
             />
           </FormControl>
-          <Button type='submit' fullWidth variant='contained' color='primary'>
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
+            onClick={this.login}
+          >
             Sign in
           </Button>
         </form>
