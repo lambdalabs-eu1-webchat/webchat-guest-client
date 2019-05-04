@@ -1,5 +1,9 @@
 import React from 'react';
 import socketIOClient from 'socket.io-client';
+import styled from 'styled-components';
+
+import Messages from '../components/Messages';
+
 import { DOMAIN, SOCKET } from '../utils/constants';
 
 class ChatView extends React.Component {
@@ -25,8 +29,15 @@ class ChatView extends React.Component {
   }
 
   render() {
-    return <h1>Chat</h1>;
+    const { tickets } = this.state;
+    return (
+      <StyledChatView>
+        <Messages tickets={tickets} />
+      </StyledChatView>
+    );
   }
 }
+
+const StyledChatView = styled.div``;
 
 export default ChatView;
