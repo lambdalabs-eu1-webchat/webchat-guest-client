@@ -11,4 +11,8 @@ export const PATH = {
 export const SOCKET = {
   connection: 'connection',
   chat_log: 'chat_log',
+  message: 'message',
+  login: 'login',
+  failed_login: 'failed_login',
+  rating: 'rating',
 };

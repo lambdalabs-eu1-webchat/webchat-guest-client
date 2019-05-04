@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
     const { user, token } = this.state;
     if (!token) return <LoginView setUserAndToken={this.setUserAndToken} />;
-    return <ChatView />;
+    return <ChatView user={user} token={token} />;
   }
 }
 
