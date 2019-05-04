@@ -14,8 +14,8 @@ const StyledLoginView = styled.div`
 
 class LoginView extends React.Component {
   state = {
-    nameInput: '',
-    passcodeInput: '',
+    nameInput: 'connor',
+    passcodeInput: 'c53nrnid3d',
   };
 
   handleChange = (event, input) => {
@@ -29,9 +29,10 @@ class LoginView extends React.Component {
 
   login = event => {
     event.preventDefault();
-    loginRequest(this.state.name, this.state.passcode)
+    loginRequest(this.state.nameInput, this.state.passcodeInput)
       .then(res => {
-        console.log(res);
+        debugger;
+        this.props.setUserAndToken(res.user, res.token);
       })
       .catch(error => {
         console.log(error);

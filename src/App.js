@@ -8,9 +8,12 @@ class App extends React.Component {
     user: null,
     token: null,
   };
+  setUserAndToken = (user, token) => {
+    this.setState({ user, token });
+  };
   render() {
     const { user, token } = this.state;
-    if (!token) return <LoginView />;
+    if (!token) return <LoginView setUserAndToken={this.setUserAndToken} />;
     return <ChatView />;
   }
 }
