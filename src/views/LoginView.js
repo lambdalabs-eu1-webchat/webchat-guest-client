@@ -31,10 +31,10 @@ class LoginView extends React.Component {
     event.preventDefault();
     loginRequest(this.state.nameInput, this.state.passcodeInput)
       .then(res => {
-        debugger;
         this.props.setUserAndToken(res.user, res.token);
       })
       .catch(error => {
+        // display a flash message
         console.log(error);
       });
   };
