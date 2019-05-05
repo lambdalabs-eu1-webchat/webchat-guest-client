@@ -66,7 +66,7 @@ class ChatView extends React.Component {
     const { tickets, messageInput } = this.state;
     return (
       <StyledChatView>
-        <Messages tickets={tickets} />
+        <Messages tickets={tickets} user_id={this.props.user._id} />
         <MessageComposer
           sendMessage={this.sendMessage}
           setMessageInput={this.setMessageInput}
