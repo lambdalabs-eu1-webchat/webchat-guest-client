@@ -7,7 +7,9 @@ function Messages({ tickets }) {
   return (
     <StyledMessages>
       {tickets.map(ticket =>
-        ticket.messages.map(message => <Message message={message} />),
+        ticket.messages.map(message => (
+          <Message key={message._id} message={message} />
+        )),
       )}
     </StyledMessages>
   );

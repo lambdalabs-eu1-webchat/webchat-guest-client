@@ -2,9 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Message({ message }) {
-  return <StyledMessage>{message.text}</StyledMessage>;
+  return (
+    <StyledMessage>
+      <span>{message.sender.name} : </span>
+      {message.text}
+    </StyledMessage>
+  );
 }
 
-const StyledMessage = styled.div``;
+const StyledMessage = styled.div`
+  padding-bottom: 8px;
+`;
 
 export default Message;
