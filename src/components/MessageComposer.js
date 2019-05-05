@@ -12,12 +12,19 @@ function MessageComposer({ messageInput, setMessageInput, sendMessage }) {
   }
   return (
     <StyledMessageComposer>
-      <input onChange={updateInput} value={messageInput} />
-      <button onClick={sendMessage}>Send</button>
+      <Input className='flex' onChange={updateInput} value={messageInput} />
+      <Button onClick={sendMessage}>Send</Button>
     </StyledMessageComposer>
   );
 }
 
-const StyledMessageComposer = styled.div``;
+const StyledMessageComposer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: stretch;
+  .flex {
+    flex: 1;
+  }
+`;
 
 export default MessageComposer;

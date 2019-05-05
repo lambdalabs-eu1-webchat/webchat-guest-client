@@ -60,6 +60,7 @@ class ChatView extends React.Component {
     //send message
     socket.emit(SOCKET.message, messageInput);
     // clear input ---->later do this on confirm that message was recieved
+    this.setState({ messageInput: '' });
   };
 
   render() {
