@@ -12,19 +12,24 @@ class ChatView extends React.Component {
   state = {
     chat_id: null,
     tickets: [],
+    messageInput: '',
   };
   componentDidMount() {
     const socket = socketIOClient(DOMAIN);
+    // save the socket in state to use in other places
+    this.setState({ socket });
     socket.on(SOCKET.connection, () => {
       console.log('connected');
       // auth this connection
       socket.emit(SOCKET.login, this.props.token);
     });
+
     socket.on(SOCKET.chat_log, chatLog => {
       // replace the old chatlog with the new one
       this.setState({ chat_id: chatLog._id, tickets: chatLog.tickets });
       console.log(chatLog);
     });
+
     socket.on(SOCKET.message, messageRes => {
       // place the message in the latest ticket messages
       this.setState(curState => {
@@ -45,12 +50,28 @@ class ChatView extends React.Component {
     });
   }
 
+  setMessageInput = messageInput => {
+    this.setState({ messageInput });
+  };
+
+  sendMessage = () => {
+    const { socket, messageInput } = this.state;
+    // want to check that it is is not empty
+    //send message
+    socket.emit(SOCKET.message, messageInput);
+    // clear input ---->later do this on confirm that message was recieved
+  };
+
   render() {
-    const { tickets } = this.state;
+    const { tickets, messageInput } = this.state;
     return (
       <StyledChatView>
         <Messages tickets={tickets} />
-        <MessageComposer />
+        <MessageComposer
+          sendMessage={this.sendMessage}
+          setMessageInput={this.setMessageInput}
+          messageInput={messageInput}
+        />
       </StyledChatView>
     );
   }

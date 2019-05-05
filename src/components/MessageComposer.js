@@ -6,11 +6,14 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 
-function MessageComposer(props) {
+function MessageComposer({ messageInput, setMessageInput, sendMessage }) {
+  function updateInput(event) {
+    setMessageInput(event.target.value);
+  }
   return (
     <StyledMessageComposer>
-      <input />
-      <button>Send</button>
+      <input onChange={updateInput} value={messageInput} />
+      <button onClick={sendMessage}>Send</button>
     </StyledMessageComposer>
   );
 }
