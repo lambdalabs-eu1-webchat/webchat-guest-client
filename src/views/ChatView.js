@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
 // components
 import Messages from '../components/Messages';
 import MessageComposer from '../components/MessageComposer';
+import RatingMessage from '../components/RatingMessage';
 
 import { DOMAIN, SOCKET } from '../utils/constants';
 
@@ -69,8 +70,12 @@ class ChatView extends React.Component {
     this.setState({ messageInput: '' });
   };
 
+  sendRating = rating => {
+    this.state.socket.emit(SOCKET.rating, rating);
+    this.setState({ getRating: false });
+  };
   render() {
-    const { tickets, messageInput } = this.state;
+    const { tickets, messageInput, getRating } = this.state;
     return (
       <StyledChatView>
         <Messages
@@ -78,6 +83,7 @@ class ChatView extends React.Component {
           user_id={this.props.user._id}
           getRating={true}
         />
+        {getRating ? <RatingMessage sendRating={this.sendRating} /> : null}
         <MessageComposer
           sendMessage={this.sendMessage}
           setMessageInput={this.setMessageInput}
