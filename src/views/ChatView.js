@@ -14,6 +14,7 @@ class ChatView extends React.Component {
     chat_id: null,
     tickets: [],
     messageInput: '',
+    getRating: false,
   };
   componentDidMount() {
     const socket = socketIOClient(DOMAIN);
@@ -39,15 +40,19 @@ class ChatView extends React.Component {
         const newTickets = tickets.map((ticket, i) => {
           // making the new state of the tickets
           if (ticketLastIndex !== i) return ticket;
-          if (ticketLastIndex === i)
-            return {
-              ...ticket,
-              messages: [...ticket.messages, messageRes.message],
-            };
+
+          return {
+            ...ticket,
+            messages: [...ticket.messages, messageRes.message],
+          };
         });
         // set the state of the tickets
         return { tickets: newTickets };
       });
+    });
+    // set up when requested for a review
+    socket.on(SOCKET.rating, () => {
+      this.setState({ getRating: true });
     });
   }
 
@@ -68,7 +73,11 @@ class ChatView extends React.Component {
     const { tickets, messageInput } = this.state;
     return (
       <StyledChatView>
-        <Messages tickets={tickets} user_id={this.props.user._id} />
+        <Messages
+          tickets={tickets}
+          user_id={this.props.user._id}
+          getRating={true}
+        />
         <MessageComposer
           sendMessage={this.sendMessage}
           setMessageInput={this.setMessageInput}

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 
 import Message from './Message';
+import RatingMessage from './RatingMessage';
 
 class Messages extends React.Component {
   scrollToBottom = scrollParams => {
@@ -20,6 +21,7 @@ class Messages extends React.Component {
             <Message key={message._id} message={message} user_id={user_id} />
           )),
         )}
+        <RatingMessage />
         <div
           ref={el => {
             this.messagesEnd = el;

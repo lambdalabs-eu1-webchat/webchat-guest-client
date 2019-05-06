@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 
 import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 
 function MessageComposer({ messageInput, setMessageInput, sendMessage }) {
