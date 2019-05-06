@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
@@ -17,6 +18,12 @@ function MessageComposer({ messageInput, setMessageInput, sendMessage }) {
     </StyledMessageComposer>
   );
 }
+
+MessageComposer.propTypes = {
+  messageInput: propTypes.string.isRequired,
+  sendMessage: propTypes.func.isRequired,
+  setMessageInput: propTypes.func.isRequired,
+};
 
 const StyledMessageComposer = styled.div`
   display: flex;

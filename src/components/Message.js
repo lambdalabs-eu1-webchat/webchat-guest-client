@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 function Message({ message, user_id }) {
   if (!message.sender) debugger;
@@ -12,6 +13,17 @@ function Message({ message, user_id }) {
     </StyledMessage>
   );
 }
+
+Message.propTypes = {
+  message: propTypes.shape({
+    _id: propTypes.string.isRequired,
+    sender: propTypes.shape({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+    }).isRequired,
+  }),
+  user_id: propTypes.string.isRequired,
+};
 
 const StyledMessage = styled.div`
   margin: 10px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import socketIOClient from 'socket.io-client';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 // components
 import Messages from '../components/Messages';
@@ -77,6 +78,19 @@ class ChatView extends React.Component {
     );
   }
 }
+
+ChatView.propTypes = {
+  user: propTypes.shape({
+    _id: propTypes.string.isRequired,
+    hotel_id: propTypes.string.isRequired,
+    name: propTypes.string.isRequired,
+    room: propTypes.shape({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  token: propTypes.string,
+};
 
 const StyledChatView = styled.div``;
 
