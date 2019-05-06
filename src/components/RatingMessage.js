@@ -42,6 +42,9 @@ class RatingMessage extends React.Component {
     );
   }
 }
+RatingMessage.propTypes = {
+  sendRating: propTypes.func.isRequired,
+};
 
 const StyledRatingMessage = styled.div``;
 
