@@ -5,7 +5,6 @@ import { DOMAIN, PATH } from '../utils/constants';
 export async function loginRequest(name, passcode) {
   try {
     // login and return the user and token
-    debugger;
     const res = await axios.post(`${DOMAIN}${PATH.users}/chat`, {
       name,
       passcode,
