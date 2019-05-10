@@ -33,7 +33,6 @@ class RatingMessage extends React.Component {
           />,
         );
     }
-
     return (
       <StyledRatingMessage>
         {stars}

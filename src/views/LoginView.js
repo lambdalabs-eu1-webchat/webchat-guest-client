@@ -15,12 +15,11 @@ const StyledLoginView = styled.div`
 
 class LoginView extends React.Component {
   state = {
-    nameInput: 'connor',
-    passcodeInput: 'c53nrnid3d',
+    nameInput: '',
+    passcodeInput: '',
   };
 
   handleChange = (event, input) => {
-    console.log(event.target.value);
     const value = event.target.value;
     this.setState(currentState => {
       currentState[input] = value;
