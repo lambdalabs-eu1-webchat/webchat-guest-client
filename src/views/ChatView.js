@@ -78,8 +78,9 @@ class ChatView extends React.Component {
     const { tickets, messageInput, getRating } = this.state;
     return (
       <StyledChatView>
-        <button onClick={this.props.logout}>Logout</button>
-        <Messages
+        <button   onClick={this.props.logout}>Logout</button>
+
+        <Messages 
           tickets={tickets}
           user_id={this.props.user._id}
           getRating={true}
@@ -108,6 +109,16 @@ ChatView.propTypes = {
   token: propTypes.string,
 };
 
-const StyledChatView = styled.div``;
-
+const StyledChatView = styled.div`
+width: 350px;
+height: 95vh;
+margin: 2.5vh auto;
+border-radius: 20px;
+background: #296ba9;
+color: #fff;
+padding: 50px;
+text-align: left;
+font-weight: 900;
+font-family: arial;
+position: relative;`;
 export default ChatView;

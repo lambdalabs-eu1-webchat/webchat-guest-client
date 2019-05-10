@@ -26,7 +26,6 @@ class Messages extends React.Component {
             this.messagesEnd = el;
           }}
         >
-          >
         </div>
       </StyledMessages>
     );
