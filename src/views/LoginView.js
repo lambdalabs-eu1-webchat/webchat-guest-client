@@ -15,8 +15,8 @@ const StyledLoginView = styled.div`
 
 class LoginView extends React.Component {
   state = {
-    nameInput: 'connor',
-    passcodeInput: 'c53nrnid3d',
+    nameInput: '',
+    passcodeInput: '',
   };
 
   handleChange = (event, input) => {

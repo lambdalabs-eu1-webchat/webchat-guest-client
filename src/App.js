@@ -8,7 +8,16 @@ class App extends React.Component {
     user: null,
     token: null,
   };
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (token && user) {
+      this.setState({ user, token });
+    }
+  }
   setUserAndToken = (user, token) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', token);
     this.setState({ user, token });
   };
   render() {
