@@ -43,8 +43,9 @@ class LoginView extends React.Component {
     const { nameInput, passcodeInput } = this.state;
     return (
       <StyledLoginView>
-        <h1>LOGIN</h1>
-        <form>
+          <div className="login"> 
+          <h1>LOGIN</h1>
+        <form className="container">
           <FormControl margin='normal' required fullWidth>
             <InputLabel htmlFor='name'>Name</InputLabel>
             <Input
@@ -77,6 +78,7 @@ class LoginView extends React.Component {
             Sign in
           </Button>
         </form>
+          </div>
       </StyledLoginView>
     );
   }

@@ -25,9 +25,7 @@ class Messages extends React.Component {
           ref={el => {
             this.messagesEnd = el;
           }}
-        >
-          >
-        </div>
+        />
       </StyledMessages>
     );
   }
@@ -54,7 +52,7 @@ Messages.propTypes = {
 };
 
 const StyledMessages = styled.div`
-  height: 95vh;
+  height: 90%;
   overflow-y: scroll;
 `;
 
