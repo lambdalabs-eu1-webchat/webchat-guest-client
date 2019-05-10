@@ -20,7 +20,6 @@ class LoginView extends React.Component {
   };
 
   handleChange = (event, input) => {
-    console.log(event.target.value);
     const value = event.target.value;
     this.setState(currentState => {
       currentState[input] = value;

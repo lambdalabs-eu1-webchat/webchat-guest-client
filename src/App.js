@@ -20,10 +20,14 @@ class App extends React.Component {
     localStorage.setItem('token', token);
     this.setState({ user, token });
   };
+  logout = () => {
+    localStorage.clear();
+    this.setState({ user: null, token: null });
+  };
   render() {
     const { user, token } = this.state;
     if (!token) return <LoginView setUserAndToken={this.setUserAndToken} />;
-    return <ChatView user={user} token={token} />;
+    return <ChatView user={user} token={token} logout={this.logout} />;
   }
 }
 
