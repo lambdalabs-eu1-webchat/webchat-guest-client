@@ -17,4 +17,5 @@ export const SOCKET = {
   rating: 'rating',
   typing: 'typing',
   stopped_typing: 'stopped_typing',
+  confirm_done_ticket: 'confirm_done_ticket',
 };

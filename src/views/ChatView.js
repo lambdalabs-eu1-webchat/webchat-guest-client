@@ -54,6 +54,8 @@ class ChatView extends React.Component {
     });
     // set up when requested for a review
     socket.on(SOCKET.rating, () => {
+      // emit that the ticket is done
+      socket.emit(SOCKET.confirm_done_ticket);
       this.setState({ getRating: true });
     });
     // set up currently typing
