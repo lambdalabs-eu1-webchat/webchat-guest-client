@@ -88,6 +88,7 @@ class ChatView extends React.Component {
     // want to check that it is is not empty
     //send message
     socket.emit(SOCKET.message, messageInput);
+    socket.emit(SOCKET.stopped_typing);
     // clear input ---->later do this on confirm that message was recieved
     this.setState({ messageInput: '' });
   };
@@ -100,7 +101,9 @@ class ChatView extends React.Component {
     const { tickets, messageInput, getRating, typingUser } = this.state;
     return (
       <StyledChatView>
-        <button className="btn" onClick={this.props.logout}>Logout</button>
+        <button className="btn" onClick={this.props.logout}>
+          Logout
+        </button>
 
         <Messages
           tickets={tickets}
