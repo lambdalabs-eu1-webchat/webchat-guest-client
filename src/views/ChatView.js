@@ -16,6 +16,7 @@ class ChatView extends React.Component {
     tickets: [],
     messageInput: '',
     getRating: false,
+    typingUser: null,
   };
   componentDidMount() {
     const socket = socketIOClient(DOMAIN);
@@ -55,10 +56,32 @@ class ChatView extends React.Component {
     socket.on(SOCKET.rating, () => {
       this.setState({ getRating: true });
     });
+    // set up currently typing
+    socket.on(SOCKET.typing, ({ user }) => {
+      if (user._id !== this.props.user._id) {
+        this.setState({ typingUser: user });
+      }
+    });
+    socket.on(SOCKET.stopped_typing, ({ user }) => {
+      console.log('STOPPED', user);
+      if (user._id !== this.props.user._id) {
+        this.setState({ typingUser: null });
+      }
+    });
   }
 
   setMessageInput = messageInput => {
-    this.setState({ messageInput });
+    const { socket } = this.state;
+    // if not typing
+    if (messageInput.length === 0) {
+      socket.emit(SOCKET.stopped_typing);
+      // if typing
+    } else if (messageInput.length > 0) {
+      socket.emit(SOCKET.typing);
+    }
+    this.setState({
+      messageInput,
+    });
   };
 
   sendMessage = () => {
@@ -75,7 +98,7 @@ class ChatView extends React.Component {
     this.setState({ getRating: false });
   };
   render() {
-    const { tickets, messageInput, getRating } = this.state;
+    const { tickets, messageInput, getRating, typingUser } = this.state;
     return (
       <StyledChatView>
         <button onClick={this.props.logout}>Logout</button>
@@ -85,6 +108,7 @@ class ChatView extends React.Component {
           user_id={this.props.user._id}
           getRating={true}
         />
+        {typingUser ? <p>{typingUser.name} is typing</p> : null}
         {getRating ? <RatingMessage sendRating={this.sendRating} /> : null}
         <MessageComposer
           sendMessage={this.sendMessage}
