@@ -100,7 +100,7 @@ class ChatView extends React.Component {
     const { tickets, messageInput, getRating, typingUser } = this.state;
     return (
       <StyledChatView>
-        <button onClick={this.props.logout}>Logout</button>
+        <button className="btn" onClick={this.props.logout}>Logout</button>
 
         <Messages
           tickets={tickets}
