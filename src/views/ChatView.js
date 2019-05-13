@@ -63,7 +63,6 @@ class ChatView extends React.Component {
       }
     });
     socket.on(SOCKET.stopped_typing, ({ user }) => {
-      console.log('STOPPED', user);
       if (user._id !== this.props.user._id) {
         this.setState({ typingUser: null });
       }
