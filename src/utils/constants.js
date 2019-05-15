@@ -1,5 +1,5 @@
-// export const DOMAIN = 'https://web-chat-labs.herokuapp.com';
-export const DOMAIN = 'http://localhost:7000';
+export const DOMAIN = 'https://web-chat-labs.herokuapp.com';
+// export const DOMAIN = 'http://localhost:7000';
 
 export const PATH = {
   users: '/api/users',
