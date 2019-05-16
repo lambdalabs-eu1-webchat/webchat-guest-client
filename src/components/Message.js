@@ -29,7 +29,7 @@ Message.propTypes = {
 const StyledMessage = styled.div`
 margin: 2rem;
 position: relative;
-max-width: 60%;
+max-width: 50%;
 border-radius:1em;
 padding: 2rem;
 width:70em;
@@ -45,7 +45,7 @@ ${props => (props.left ? `margin-left:auto;` : 'margin-right:auto;')}
   bottom: 0;
   width: 0.2rem;
   height: -20.2em;
-  border: 1em solid transparent ;
+  border: 1em 3em 1em 3em ;
   border-bottom:20em;
   margin-right: -0.1em;
   margin-bottom: -0.562em;
