@@ -32,13 +32,12 @@ position: relative;
 max-width: 60%;
 border-radius:1em;
 padding: 2rem;
-height:15px;
 width:70em;
 overflow: scroll;
 
 
 ${props => (props.left ? `background:${theme.color.footerText};` : `background:${theme.color.accentPurple};`)}
-${props => (props.left ? `text-align: left;` : 'text-align: right;')}
+${props => (props.left ? `text-align: right;` : 'text-align: left;')}
 ${props => (props.left ? `margin-left:auto;` : 'margin-right:auto;')}
 &:after {
   content: '';
