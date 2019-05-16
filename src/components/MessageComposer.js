@@ -26,6 +26,8 @@ MessageComposer.propTypes = {
 const StyledMessageComposer = styled.div`
   display: flex;
   width: 100%;
+  item-align:center;
+  height:1.875rem;
   justify-content: stretch;
   .flex {
     flex: 1;
