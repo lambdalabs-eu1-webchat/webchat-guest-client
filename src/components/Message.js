@@ -27,16 +27,19 @@ Message.propTypes = {
 };
 
 const StyledMessage = styled.div`
-margin: 1rem;
+margin: 2rem;
 position: relative;
-max-width: 65%;
-border-radius: 4em;
+max-width: 60%;
+border-radius:1em;
 padding: 2rem;
+height:15px;
+width:70em;
+overflow: scroll;
 
 
 ${props => (props.left ? `background:${theme.color.footerText};` : `background:${theme.color.accentPurple};`)}
 ${props => (props.left ? `text-align: left;` : 'text-align: right;')}
-${props => (props.left ? `margin-right:auto;` : 'margin-left:auto;')}
+${props => (props.left ? `margin-left:auto;` : 'margin-right:auto;')}
 &:after {
   content: '';
   position: absolute;
@@ -44,22 +47,10 @@ ${props => (props.left ? `margin-right:auto;` : 'margin-left:auto;')}
   width: 0.2rem;
   height: -20.2em;
   border: 1em solid transparent ;
-  border-top-color: #00aabb;
   border-bottom:20em;
   margin-right: -0.1em;
   margin-bottom: -0.562em;
-  ${props =>
-    props.left
-      ? `
-  border-left:0;
-  right: 8%;
-  border-top-color: ${theme.color.footerText};
-  `
-      : `
-      border-right:100;
-      left:8%;
-      border-top-color:${theme.color.accentPurple};
-`}
+
 }
 `;
 // border-right: 0;

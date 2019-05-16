@@ -143,17 +143,21 @@ const StyledChatView = styled.div`
   height: 75vh;
   margin: 2.5vh auto;
   border-radius: 2rem;
-  color:${theme.color.white};
+  color:black;
+  background-color:${theme.color.hoverPurple}
   padding: 50px;
   text-align: left;
-  font-weight: 900;
   font-family: arial;
   position: relative;
   box-sizing: border-box;
-  overflow:scroll;
+  overflow-y:hidden;
     
   @media (max-width: 700px) {
     width: 90%;
   }
+`;
+
+const inputField = styled.div`
+
 `;
 export default ChatView;

@@ -6,11 +6,17 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import theme from '../theme/styledTheme'
 // requests
 import { loginRequest } from '../requests/ajax';
 const StyledLoginView = styled.div`
-  width: 500px;
-  margin: 0 auto;
+padding: 5rem 5rem 11rem 5rem;
+background: ${theme.color.lightPurple};
+margin: 0 5rem;
+@media(max-width: 500px) {
+  padding: 3rem;
+  margin: 0;
+}
 `;
 
 class LoginView extends React.Component {
