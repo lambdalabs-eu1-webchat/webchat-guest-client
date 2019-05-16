@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import theme from '../theme/styledTheme'
 
 function Message({ message, user_id }) {
   if (!message.sender) debugger;
@@ -26,37 +27,40 @@ Message.propTypes = {
 };
 
 const StyledMessage = styled.div`
-  margin: 10px;
-  position: relative;
+margin: 1rem;
+position: relative;
+max-width: 65%;
+border-radius: 4em;
+padding: 2rem;
 
-  border-radius: 0.4em;
-  padding: 10px;
-  ${props => (props.left ? `background: green;` : 'background: #00aabb;')}
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
 
-    width: 0;
-    height: 0;
-    border: 0.563em solid transparent;
-    border-top-color: #00aabb;
-    border-bottom: 0;
-    margin-left: -0.281em;
-    margin-bottom: -0.562em;
-    ${props =>
-      props.left
-        ? `
-    border-left:0;
-    left: 3%;
-    border-top-color: green;
-    `
-        : `
-        border-right:0;
-        right:3%;
-        border-top-color: #00aabb;
-  `}
-  }
+${props => (props.left ? `background:${theme.color.footerText};` : `background:${theme.color.accentPurple};`)}
+${props => (props.left ? `text-align: left;` : 'text-align: right;')}
+${props => (props.left ? `margin-right:auto;` : 'margin-left:auto;')}
+&:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 0.2rem;
+  height: -20.2em;
+  border: 1em solid transparent ;
+  border-top-color: #00aabb;
+  border-bottom:20em;
+  margin-right: -0.1em;
+  margin-bottom: -0.562em;
+  ${props =>
+    props.left
+      ? `
+  border-left:0;
+  right: 8%;
+  border-top-color: ${theme.color.footerText};
+  `
+      : `
+      border-right:100;
+      left:8%;
+      border-top-color:${theme.color.accentPurple};
+`}
+}
 `;
 // border-right: 0;
 export default Message;

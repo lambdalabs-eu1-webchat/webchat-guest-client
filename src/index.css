@@ -159,22 +159,8 @@ img {
   float: left;
 }
 
-.logout {
-  font-size: .8em;
-  font-family: 'Oswald', sans-serif;
-	position: relative;
-  right: -18px;
-  bottom: -4px;
-  overflow: hidden;
-  letter-spacing: 3px;
-  opacity: 0;
-  transition: opacity .45s;
-  -webkit-transition: opacity .35s;
-  
-}
-
 .btn {
-  background-color: rgb(228, 15, 15);
+  background-color: #da5151;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -188,6 +174,7 @@ img {
 
 a:hover {
   width: 100px;
+  color:#da5151;
 }
 
 a:hover .logout{

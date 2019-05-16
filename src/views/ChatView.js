@@ -7,6 +7,7 @@ import propTypes from 'prop-types';
 import Messages from '../components/Messages';
 import MessageComposer from '../components/MessageComposer';
 import RatingMessage from '../components/RatingMessage';
+import theme from '../theme/styledTheme'
 
 import { DOMAIN, SOCKET } from '../utils/constants';
 
@@ -103,7 +104,7 @@ class ChatView extends React.Component {
     const { tickets, messageInput, getRating, typingUser } = this.state;
     return (
       <StyledChatView>
-        <button className="btn" onClick={this.props.logout}>
+        <button className="btn warning" onClick={this.props.logout}>
           Logout
         </button>
 
@@ -138,17 +139,21 @@ ChatView.propTypes = {
 };
 
 const StyledChatView = styled.div`
-  width: 350px;
-  height: 95vh;
+  width: 25rem;
+  height: 75vh;
   margin: 2.5vh auto;
-  border-radius: 20px;
-  background: #296ba9;
-  color: #fff;
+  border-radius: 2rem;
+  color:${theme.color.white};
   padding: 50px;
   text-align: left;
   font-weight: 900;
   font-family: arial;
   position: relative;
   box-sizing: border-box;
+  overflow:scroll;
+    
+  @media (max-width: 700px) {
+    width: 90%;
+  }
 `;
 export default ChatView;
