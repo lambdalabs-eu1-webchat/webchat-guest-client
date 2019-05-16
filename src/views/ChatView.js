@@ -145,7 +145,7 @@ const StyledChatView = styled.div`
   border-radius: 2rem;
   color:black;
   background-color:${theme.color.hoverPurple}
-  padding: 50px;
+  padding:3.125rem;
   text-align: left;
   font-family: arial;
   position: relative;
