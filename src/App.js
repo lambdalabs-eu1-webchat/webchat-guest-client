@@ -1,5 +1,4 @@
 import React from 'react';
-
 import LoginView from './views/LoginView';
 import ChatView from './views/ChatView';
 

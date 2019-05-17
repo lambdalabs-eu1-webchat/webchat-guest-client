@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import Navbar from '../components/navbar/NavBar'
 // components
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
@@ -48,7 +49,9 @@ class LoginView extends React.Component {
   render() {
     const { nameInput, passcodeInput } = this.state;
     return (
+    
       <StyledLoginView>
+          <Navbar />
           <div className="login"> 
           <h1>LOGIN</h1>
         <form className="container">
