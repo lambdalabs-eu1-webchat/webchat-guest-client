@@ -145,36 +145,3 @@ code {
 form {
   margin-top: 20px;
 }
-
-@import url(https://fonts.googleapis.com/css?family=Oswald:400);
-
-.navigation {
-  width: 100%;
-  background-color: black;
-}
-
-.btn {
-  background-color: #da5151;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-a:hover {
-  width: 100px;
-  color: #da5151;
-}
-
-a:hover .logout {
-  opacity: 0.9;
-}
-
-a {
-  text-decoration: none;
-}
