@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from './logo2.svg';
 import { NavLink } from 'react-router-dom';
-import theme from '../../../theme/styledTheme';
+import theme from '../../theme/styledTheme';
 
 const NavBar = props => {
     return (
