@@ -49,9 +49,10 @@ class LoginView extends React.Component {
   render() {
     const { nameInput, passcodeInput } = this.state;
     return (
-    
+    <div>
+       <Navbar />
       <StyledLoginView>
-          <Navbar />
+         
           <div className="login"> 
           <h1>LOGIN</h1>
         <form className="container">
@@ -89,6 +90,7 @@ class LoginView extends React.Component {
         </form>
           </div>
       </StyledLoginView>
+      </div>
     );
   }
 }
