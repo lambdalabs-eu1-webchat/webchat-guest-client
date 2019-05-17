@@ -57,6 +57,7 @@ class LoginView extends React.Component {
   render() {
     const { nameInput, passcodeInput } = this.state;
     return (
+
       <LoginWrapper>
         <Navbar />
         <StyledLoginView>
