@@ -143,8 +143,6 @@ const StyledChatView = styled.div`
   padding: 2rem;
   overflow-y: hidden;
 
-  border: 1px solid black;
-
   @media (max-width: 700px) {
     width: 90%;
   }
