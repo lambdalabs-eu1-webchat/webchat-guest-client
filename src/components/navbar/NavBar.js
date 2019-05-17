@@ -1,22 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from './logo2.svg';
-import { NavLink } from 'react-router-dom';
 import theme from '../../theme/styledTheme';
 
 const NavBar = props => {
-    return (
-      <StyledNav className="nav-wrapper navy darken-2 hide-on-print">
-        <div className="container">
-          <NavLink to="/" className="brand-logo">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />{' '}
-            </header>
-          </NavLink>
-        </div>
-      </StyledNav>
-    );
-  }
+  return (
+    <StyledNav className="nav-wrapper navy darken-2 hide-on-print">
+      <div className="container">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />{' '}
+        </header>
+      </div>
+    </StyledNav>
+  );
+};
 export default NavBar;
 
 const StyledNav = styled.nav`
