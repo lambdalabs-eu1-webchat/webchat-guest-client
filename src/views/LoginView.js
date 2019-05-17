@@ -1,25 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
-import Navbar from '../components/navbar/NavBar'
+import Navbar from '../components/navbar/NavBar';
 import jwt from 'jsonwebtoken';
 // components
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-import theme from '../theme/styledTheme'
+import theme from '../theme/styledTheme';
 // requests
 import { loginRequest } from '../requests/ajax';
-const StyledLoginView = styled.div`
-padding: 5rem 5rem 11rem 5rem;
-background: ${theme.color.lightPurple};
-margin: 0 5rem;
-@media(max-width: 500px) {
-  padding: 3rem;
-  margin: 0;
-}
-`;
 
 class LoginView extends React.Component {
   state = {
@@ -66,11 +57,10 @@ class LoginView extends React.Component {
   render() {
     const { nameInput, passcodeInput } = this.state;
     return (
-    <div>
-       <Navbar />
-      <StyledLoginView>
-        <div className="login">
-          <h1>LOGIN</h1>
+      <LoginWrapper>
+        <Navbar />
+        <StyledLoginView>
+          <h2>Login</h2>
           <form className="container">
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="name">Name</InputLabel>
@@ -101,12 +91,11 @@ class LoginView extends React.Component {
               color="primary"
               onClick={this.login}
             >
-              Sign in
+              Login
             </Button>
           </form>
-        </div>
-      </StyledLoginView>
-      </div>
+        </StyledLoginView>
+      </LoginWrapper>
     );
   }
 }
@@ -114,5 +103,29 @@ class LoginView extends React.Component {
 LoginView.propTypes = {
   setUserAndToken: propTypes.func.isRequired,
 };
+
+const LoginWrapper = styled.div`
+  background: ${theme.color.lightPurple};
+  height: 100vh;
+`;
+
+const StyledLoginView = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  h2 {
+    text-align: left;
+    font-size: ${theme.fontSize.m};
+    padding: 20px 0;
+    color: ${theme.color.textColor};
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+`;
 
 export default LoginView;
