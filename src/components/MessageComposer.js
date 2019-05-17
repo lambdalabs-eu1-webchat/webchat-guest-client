@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import theme from '../theme/styledTheme';
 
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
@@ -11,8 +12,10 @@ function MessageComposer({ messageInput, setMessageInput, sendMessage }) {
   }
   return (
     <StyledMessageComposer>
-      <Input className='flex' onChange={updateInput} value={messageInput} />
-      <Button onClick={sendMessage}>Send</Button>
+      <Input className="flex" onChange={updateInput} value={messageInput} />
+      <Button onClick={sendMessage}>
+        <i className="fas fa-paper-plane" />
+      </Button>
     </StyledMessageComposer>
   );
 }
@@ -26,11 +29,15 @@ MessageComposer.propTypes = {
 const StyledMessageComposer = styled.div`
   display: flex;
   width: 100%;
-  item-align:center;
-  height:1.875rem;
   justify-content: stretch;
   .flex {
     flex: 1;
+  }
+
+  .fa-paper-plane {
+    background: transparent;
+    color: ${theme.color.accentGreen};
+    font-size: 1.5rem;
   }
 `;
 
