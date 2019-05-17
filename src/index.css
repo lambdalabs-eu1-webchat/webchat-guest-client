@@ -142,8 +142,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-form{
-  margin-top: 20px
+form {
+  margin-top: 20px;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Oswald:400);
@@ -151,12 +151,6 @@ form{
 .navigation {
   width: 100%;
   background-color: black;
-}
-
-img {
-  width: 25px;
-  border-radius: 50px;
-  float: left;
 }
 
 .btn {
@@ -174,11 +168,11 @@ img {
 
 a:hover {
   width: 100px;
-  color:#da5151;
+  color: #da5151;
 }
 
-a:hover .logout{
-  opacity: .9;
+a:hover .logout {
+  opacity: 0.9;
 }
 
 a {
