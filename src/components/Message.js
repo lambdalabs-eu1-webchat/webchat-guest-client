@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import theme from '../theme/styledTheme';
 
 function Message({ message, user_id }) {
-  if (!message.sender) debugger;
+  if (!message.sender);
   return (
     <StyledMessage left={user_id === message.sender.id}>
       <span>{message.sender.name} : </span>
-      <div className='bubble-container'>
-        <span className='bubble me'>{message.text}</span>
+      <div>
+        <span>{message.text}</span>
       </div>
     </StyledMessage>
   );
@@ -26,37 +27,17 @@ Message.propTypes = {
 };
 
 const StyledMessage = styled.div`
-  margin: 10px;
-  position: relative;
+  margin: 1rem 0;
+  max-width: 50%;
+  border-radius:1em;
+  padding: 1rem;
 
-  border-radius: 0.4em;
-  padding: 10px;
-  ${props => (props.left ? `background: green;` : 'background: #00aabb;')}
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-
-    width: 0;
-    height: 0;
-    border: 0.563em solid transparent;
-    border-top-color: #00aabb;
-    border-bottom: 0;
-    margin-left: -0.281em;
-    margin-bottom: -0.562em;
-    ${props =>
-      props.left
-        ? `
-    border-left:0;
-    left: 3%;
-    border-top-color: green;
-    `
-        : `
-        border-right:0;
-        right:3%;
-        border-top-color: #00aabb;
-  `}
-  }
+  ${props =>
+    props.left
+      ? `background:${theme.color.footerText};`
+      : `background:${theme.color.accentPurple};`}
+  ${props => (props.left ? `text-align: right;` : 'text-align: left;')}
+  ${props => (props.left ? `margin-left: auto;` : 'margin-right: auto;')}
 `;
-// border-right: 0;
+
 export default Message;
