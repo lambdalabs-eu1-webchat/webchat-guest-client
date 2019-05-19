@@ -17,6 +17,7 @@ const StyledNav = styled.nav`
   padding: 1rem 2.5rem;
 
   img {
-    max-width: 400px;
+    max-width: 200px;
+    margin: 0 auto;
   }
 `;
