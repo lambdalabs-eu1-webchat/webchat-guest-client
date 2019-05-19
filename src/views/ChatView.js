@@ -137,14 +137,20 @@ ChatView.propTypes = {
 };
 
 const StyledChatView = styled.div`
-  width: 25rem;
-  height: 75vh;
-  margin: 2.5vh auto;
+  width: 45rem;
+  height: 80vh;
+  margin: 3rem auto 2rem;
   padding: 2rem;
   overflow-y: hidden;
 
   @media (max-width: 700px) {
-    width: 90%;
+    width: 100%;
+    margin: 0;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
   }
 `;
 
