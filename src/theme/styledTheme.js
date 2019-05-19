@@ -61,6 +61,7 @@ const theme = {
 
   button: {
     height: '48px',
+    smallButton: '30px',
   },
 
   spacing: {
