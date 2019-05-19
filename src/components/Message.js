@@ -27,17 +27,19 @@ Message.propTypes = {
 };
 
 const StyledMessage = styled.div`
-  margin: 1rem 0;
-  max-width: 50%;
-  border-radius:1em;
-  padding: 1rem;
-
-  ${props =>
-    props.left
-      ? `background:${theme.color.footerText};`
-      : `background:${theme.color.accentPurple};`}
-  ${props => (props.left ? `text-align: right;` : 'text-align: left;')}
-  ${props => (props.left ? `margin-left: auto;` : 'margin-right: auto;')}
+  margin: 1.25rem 0;
+  max-width: 65%;
+  font-size: ${theme.fontSize.xxs};
+  color: ${theme.color.textColor};
+  padding: 2rem;
+  
+    ${props =>
+      props.left
+        ? `background:${theme.color.footerText};`
+        : `background:${theme.color.lightPurple};`}
+    ${props => (props.left ? `text-align: right;` : 'text-align: left;')}
+    ${props => (props.left ? `margin-left: auto;` : 'margin-right: auto;')}
+    ${props => (props.left ? `border-radius: 2rem 2rem 0.3rem 2rem` : 'border-radius: 2rem 2rem 2rem 0.3rem;')}
 `;
 
 export default Message;
