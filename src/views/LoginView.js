@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 import Navbar from '../components/navbar/NavBar';
 import jwt from 'jsonwebtoken';
-// components
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
 import theme from '../theme/styledTheme';
 // requests
 import { loginRequest } from '../requests/ajax';
