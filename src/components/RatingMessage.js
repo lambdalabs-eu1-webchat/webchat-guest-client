@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import theme from './../theme/styledTheme';
 
 class RatingMessage extends React.Component {
   state = {
@@ -45,6 +46,38 @@ RatingMessage.propTypes = {
   sendRating: propTypes.func.isRequired,
 };
 
-const StyledRatingMessage = styled.div``;
+const StyledRatingMessage = styled.div`
+  padding: 1rem 0;
+  
+  .far {
+    color: ${theme.color.accentPurple};
+    font-size: ${theme.fontSize.m};
+  }
+  
+  .fas {
+    color: ${theme.color.accentPurple};
+    font-size: ${theme.fontSize.m};
+  }
+  
+  button {
+    width: 15rem;
+    height: ${theme.button.smallButton};
+    font-size: ${theme.fontSize.xs};
+    border-radius: ${theme.border.radius};
+    background: ${theme.color.accentGreen};
+    border: none;
+    text-transform: ${theme.textTransform.uppercase};
+    color: ${theme.color.white};
+    margin-left: 5px;
+    box-shadow: ${theme.shadow.buttonShadow};
+    &:hover {
+      box-shadow: ${theme.shadow.buttonHover};
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+`;
 
 export default RatingMessage;
