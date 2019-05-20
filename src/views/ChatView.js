@@ -22,6 +22,7 @@ class ChatView extends React.Component {
     typingUser: null,
     hotelName: '',
     staffName: '',
+    isCheckOut: false,
   };
   componentDidMount() {
     // get the hotel info
@@ -37,7 +38,7 @@ class ChatView extends React.Component {
       // auth this connection
       socket.emit(SOCKET.login, this.props.token);
     });
-
+    socket.on(SOCKET.check_out, () => this.setState({ isCheckOut: true }));
     socket.on(SOCKET.chat_log, chatLog => {
       // replace the old chatlog with the new one
       const tickets = chatLog.tickets;
@@ -124,6 +125,7 @@ class ChatView extends React.Component {
       typingUser,
       hotelName,
       staffName,
+      isCheckOut,
     } = this.state;
     return (
       <StyledChatView>
@@ -142,11 +144,13 @@ class ChatView extends React.Component {
         />
         {typingUser ? <Typing /> : null}
         {getRating ? <RatingMessage sendRating={this.sendRating} /> : null}
-        <MessageComposer
-          sendMessage={this.sendMessage}
-          setMessageInput={this.setMessageInput}
-          messageInput={messageInput}
-        />
+        {!isCheckOut ? (
+          <MessageComposer
+            sendMessage={this.sendMessage}
+            setMessageInput={this.setMessageInput}
+            messageInput={messageInput}
+          />
+        ) : null}
       </StyledChatView>
     );
   }
