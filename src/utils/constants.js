@@ -17,3 +17,7 @@ export const SOCKET = {
   stopped_typing: 'stopped_typing',
   confirm_done_ticket: 'confirm_done_ticket',
 };
+
+export const QUEUED = 'queued';
+export const ACTIVE = 'active';
+export const CLOSED = 'closed';

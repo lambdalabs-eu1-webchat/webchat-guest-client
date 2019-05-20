@@ -9,7 +9,7 @@ import MessageComposer from '../components/MessageComposer';
 import RatingMessage from '../components/RatingMessage';
 import theme from '../theme/styledTheme';
 
-import { DOMAIN, SOCKET } from '../utils/constants';
+import { DOMAIN, SOCKET, CLOSED } from '../utils/constants';
 import { getHotel } from '../requests/ajax';
 
 class ChatView extends React.Component {
@@ -39,11 +39,15 @@ class ChatView extends React.Component {
 
     socket.on(SOCKET.chat_log, chatLog => {
       // replace the old chatlog with the new one
-
+      const tickets = chatLog.tickets;
+      const lastTicket = tickets[tickets.length - 1];
+      const getRating = lastTicket.status === CLOSED && !lastTicket.rating;
+      debugger;
       this.setState({
         chat_id: chatLog._id,
         tickets: chatLog.tickets,
         staffName: chatLog.staff_member ? chatLog.staff_member.name : '',
+        getRating,
       });
     });
 
