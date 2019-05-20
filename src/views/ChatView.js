@@ -42,7 +42,6 @@ class ChatView extends React.Component {
       const tickets = chatLog.tickets;
       const lastTicket = tickets[tickets.length - 1];
       const getRating = lastTicket.status === CLOSED && !lastTicket.rating;
-      debugger;
       this.setState({
         chat_id: chatLog._id,
         tickets: chatLog.tickets,
@@ -59,7 +58,6 @@ class ChatView extends React.Component {
         const newTickets = tickets.map((ticket, i) => {
           // making the new state of the tickets
           if (ticketLastIndex !== i) return ticket;
-
           return {
             ...ticket,
             messages: [...ticket.messages, messageRes.message],
@@ -125,14 +123,16 @@ class ChatView extends React.Component {
       hotelName,
       staffName,
     } = this.state;
-    console.log(hotelName);
     return (
       <StyledChatView>
-        <ButtonWrap>
+        <StyledHeader>
+          <div className="header-names">
+            <h1>{hotelName}</h1>
+            <h2>{staffName ? staffName : ' '}</h2>
+          </div>
           <button onClick={this.props.logout}>Logout</button>
-        </ButtonWrap>
-        <h2>{hotelName}</h2>
-        {staffName ? <h3>{staffName}</h3> : null}
+        </StyledHeader>
+
         <Messages
           tickets={tickets}
           user_id={this.props.user._id}
@@ -165,11 +165,10 @@ ChatView.propTypes = {
 
 const StyledChatView = styled.div`
   width: 45rem;
-  height: 80vh;
   margin: 3rem auto 2rem;
   padding: 2rem;
-  overflow-y: hidden;
 
+  height: 90vh;
   @media (max-width: 700px) {
     width: 100%;
     margin: 0;
@@ -181,21 +180,34 @@ const StyledChatView = styled.div`
   }
 `;
 
-const ButtonWrap = styled.div`
-  //border-bottom: 1px solid rgba(0, 0, 0, 0.42);
-
+const StyledHeader = styled.header`
+  display: flex;
+  background-color: ${theme.color.lightPurple};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header-names {
+    padding-left: 10px;
+    height: 50px;
+    h1 {
+      font-size: ${theme.fontSize.xs};
+    }
+    h2 {
+      font-size: ${theme.fontSize.xxs};
+      padding-left: 5px;
+      padding-bottom: 0.4rem;
+    }
+  }
   button {
     background-color: #da5151;
     border-radius: ${theme.border.radius};
     border: none;
     color: white;
-    padding: 0;
-    //padding: 1rem 2rem;
+    padding: 0, 0.5rem;
     height: ${theme.button.smallButton};
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    width: 100%;
     font-size: ${theme.fontSize.xs};
     //margin: 4px 2px;
     cursor: pointer;
