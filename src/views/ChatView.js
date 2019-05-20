@@ -7,6 +7,7 @@ import propTypes from 'prop-types';
 import Messages from '../components/Messages';
 import MessageComposer from '../components/MessageComposer';
 import RatingMessage from '../components/RatingMessage';
+import Typing from '../components/Typing';
 import theme from '../theme/styledTheme';
 
 import { DOMAIN, SOCKET, CLOSED } from '../utils/constants';
@@ -41,7 +42,8 @@ class ChatView extends React.Component {
       // replace the old chatlog with the new one
       const tickets = chatLog.tickets;
       const lastTicket = tickets[tickets.length - 1];
-      const getRating = lastTicket.status === CLOSED && !lastTicket.rating;
+      const getRating =
+        !!lastTicket && lastTicket.status === CLOSED && !lastTicket.rating;
       this.setState({
         chat_id: chatLog._id,
         tickets: chatLog.tickets,
@@ -138,7 +140,7 @@ class ChatView extends React.Component {
           user_id={this.props.user._id}
           getRating={true}
         />
-        {typingUser ? <p>{typingUser.name} is typing</p> : null}
+        {typingUser ? <Typing /> : null}
         {getRating ? <RatingMessage sendRating={this.sendRating} /> : null}
         <MessageComposer
           sendMessage={this.sendMessage}
@@ -169,6 +171,8 @@ const StyledChatView = styled.div`
   padding: 2rem;
 
   height: 90vh;
+  display: flex;
+  flex-direction: column;
   @media (max-width: 700px) {
     width: 100%;
     margin: 0;
