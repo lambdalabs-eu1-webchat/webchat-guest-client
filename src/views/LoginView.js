@@ -49,12 +49,10 @@ class LoginView extends React.Component {
       this.setState({ loggingIn: true, errorMessage: '' });
       loginRequest(this.state.nameInput, this.state.passcodeInput)
         .then(res => {
-          debugger;
           this.props.setUserAndToken(res.user, res.token);
         })
         .catch(error => {
           // display a flash message
-          debugger;
           this.setState({
             loggingIn: false,
             errorMessage: error.response.data.message,
