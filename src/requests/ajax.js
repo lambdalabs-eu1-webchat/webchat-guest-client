@@ -15,3 +15,12 @@ export async function loginRequest(name, passcode) {
     return error.response.data.message;
   }
 }
+
+export async function getHotel(hotel_id) {
+  try {
+    const res = await axios.get(`${DOMAIN}${PATH.hotel}/${hotel_id}`);
+    return res.data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+}

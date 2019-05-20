@@ -10,6 +10,7 @@ import RatingMessage from '../components/RatingMessage';
 import theme from '../theme/styledTheme';
 
 import { DOMAIN, SOCKET } from '../utils/constants';
+import { getHotel } from '../requests/ajax';
 
 class ChatView extends React.Component {
   state = {
@@ -18,8 +19,15 @@ class ChatView extends React.Component {
     messageInput: '',
     getRating: false,
     typingUser: null,
+    hotelName: '',
   };
   componentDidMount() {
+    // get the hotel info
+    getHotel(this.props.user.hotel_id)
+      .then(hotel => {
+        this.setState({ hotelName: hotel.name });
+      })
+      .catch(error => console.log(error));
     const socket = socketIOClient(DOMAIN);
     // save the socket in state to use in other places
     this.setState({ socket });
@@ -99,13 +107,20 @@ class ChatView extends React.Component {
     this.setState({ getRating: false });
   };
   render() {
-    const { tickets, messageInput, getRating, typingUser } = this.state;
+    const {
+      tickets,
+      messageInput,
+      getRating,
+      typingUser,
+      hotelName,
+    } = this.state;
+    console.log(hotelName);
     return (
       <StyledChatView>
         <ButtonWrap>
           <button onClick={this.props.logout}>Logout</button>
         </ButtonWrap>
-
+        <h2>{hotelName}</h2>
         <Messages
           tickets={tickets}
           user_id={this.props.user._id}

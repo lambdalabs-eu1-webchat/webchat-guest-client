@@ -3,6 +3,7 @@ export const DOMAIN = 'https://web-chat-labs.herokuapp.com';
 
 export const PATH = {
   users: '/api/users',
+  hotel: '/api/hotel',
 };
 
 export const SOCKET = {
