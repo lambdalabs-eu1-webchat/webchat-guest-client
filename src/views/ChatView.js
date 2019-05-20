@@ -155,7 +155,6 @@ const StyledChatView = styled.div`
 `;
 
 const ButtonWrap = styled.div`
-  //border-bottom: 1px solid rgba(0, 0, 0, 0.42);
 
   button {
     background-color: #da5151;
@@ -163,14 +162,13 @@ const ButtonWrap = styled.div`
     border: none;
     color: white;
     padding: 0;
-    //padding: 1rem 2rem;
     height: ${theme.button.smallButton};
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     width: 100%;
-    font-size: ${theme.fontSize.xs};
-    //margin: 4px 2px;
+    font-size: ${theme.fontSize.xxs};
+    font-weight: bold;
     cursor: pointer;
   }
 `;
