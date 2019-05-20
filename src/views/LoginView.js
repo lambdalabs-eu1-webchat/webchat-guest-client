@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 import Navbar from '../components/navbar/NavBar';
 import jwt from 'jsonwebtoken';
-// components
-import Input from '@material-ui/core/Input';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
 import theme from '../theme/styledTheme';
 // requests
 import { loginRequest } from '../requests/ajax';
@@ -63,9 +58,8 @@ class LoginView extends React.Component {
         <StyledLoginView>
           <h2>Login</h2>
           <form className="container">
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="name">Name</InputLabel>
-              <Input
+              <label>Name*</label>
+              <input
                 id="name"
                 name="name"
                 autoComplete="name"
@@ -73,10 +67,8 @@ class LoginView extends React.Component {
                 value={nameInput}
                 onChange={event => this.handleChange(event, 'nameInput')}
               />
-            </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="passcode">Passcode</InputLabel>
-              <Input
+              <label>Passcode*</label>
+              <input
                 name="passcode"
                 type="passcode"
                 id="passcode"
@@ -84,16 +76,7 @@ class LoginView extends React.Component {
                 value={passcodeInput}
                 onChange={event => this.handleChange(event, 'passcodeInput')}
               />
-            </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={this.login}
-            >
-              Login
-            </Button>
+            <button type="submit" onClick={this.login}>Login</button>
           </form>
         </StyledLoginView>
       </LoginWrapper>
@@ -106,26 +89,69 @@ LoginView.propTypes = {
 };
 
 const LoginWrapper = styled.div`
-  background: ${theme.color.lightPurple};
+  background: ${theme.color.white};
   height: 100vh;
 `;
 
 const StyledLoginView = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  max-width: 450px;
+  margin: 8rem auto;
+  @media (max-width: 600px) {
+    margin: 3rem 3rem;
+  }
 
   h2 {
     text-align: left;
-    font-size: ${theme.fontSize.m};
+    font-size: ${theme.fontSize.xl};
     padding: 20px 0;
     color: ${theme.color.textColor};
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    
+    label {
+      font-size: ${theme.fontSize.xxs};
+      color: ${theme.color.accentPurple};
+      font-weight: bold;
+    }
+    
+    input {
+      border: none;
+      border-bottom: 1px solid ${theme.color.footerText};
+      margin-bottom: 20px;
+      height: ${theme.input.height};
+      font-size: ${theme.fontSize.xs};
+      padding: 20px 0;
+      border-radius: 0;
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   button {
     margin-top: 1rem;
+    width: 100%;
+    height: ${theme.button.height};
+    font-size: ${theme.fontSize.s};
+    border-radius: ${theme.border.radius};
+    background: ${theme.color.accentGreen};
+    border: none;
+    text-transform: ${theme.textTransform.uppercase};
+    color: ${theme.color.white};
+    font-weight: ${theme.fontWeight.bold};
+    box-shadow: ${theme.shadow.buttonShadow};
+    &:hover {
+      box-shadow: ${theme.shadow.buttonHover};
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 `;
 

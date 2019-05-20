@@ -137,30 +137,40 @@ ChatView.propTypes = {
 };
 
 const StyledChatView = styled.div`
-  width: 25rem;
-  height: 75vh;
-  margin: 2.5vh auto;
+  width: 45rem;
+  height: 80vh;
+  margin: 3rem auto 2rem;
   padding: 2rem;
   overflow-y: hidden;
 
   @media (max-width: 700px) {
-    width: 90%;
+    width: 100%;
+    margin: 0;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
   }
 `;
 
 const ButtonWrap = styled.div`
-  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.42);
 
   button {
     background-color: #da5151;
-    border-radius: 5px;
+    border-radius: ${theme.border.radius};
     border: none;
     color: white;
-    padding: 1rem 2rem;
+    padding: 0;
+    //padding: 1rem 2rem;
+    height: ${theme.button.smallButton};
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: ${theme.fontSize.xs};
+    //margin: 4px 2px;
     cursor: pointer;
   }
 `;
