@@ -28,7 +28,7 @@ const StyledTyping = styled.div`
       margin-right: 3px;
       background: #303131;
       animation: wave 1.3s linear infinite;
-      background-color: ${theme.color.lightPurple};
+      background-color: ${theme.color.accentPurple};
 
       &:nth-child(2) {
         animation-delay: -1.1s;
