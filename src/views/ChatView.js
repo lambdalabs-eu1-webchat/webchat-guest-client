@@ -20,6 +20,7 @@ class ChatView extends React.Component {
     getRating: false,
     typingUser: null,
     hotelName: '',
+    staffName: '',
   };
   componentDidMount() {
     // get the hotel info
@@ -38,7 +39,12 @@ class ChatView extends React.Component {
 
     socket.on(SOCKET.chat_log, chatLog => {
       // replace the old chatlog with the new one
-      this.setState({ chat_id: chatLog._id, tickets: chatLog.tickets });
+
+      this.setState({
+        chat_id: chatLog._id,
+        tickets: chatLog.tickets,
+        staffName: chatLog.staff_member ? chatLog.staff_member.name : '',
+      });
     });
 
     socket.on(SOCKET.message, messageRes => {
@@ -113,6 +119,7 @@ class ChatView extends React.Component {
       getRating,
       typingUser,
       hotelName,
+      staffName,
     } = this.state;
     console.log(hotelName);
     return (
@@ -121,6 +128,7 @@ class ChatView extends React.Component {
           <button onClick={this.props.logout}>Logout</button>
         </ButtonWrap>
         <h2>{hotelName}</h2>
+        {staffName ? <h3>{staffName}</h3> : null}
         <Messages
           tickets={tickets}
           user_id={this.props.user._id}
