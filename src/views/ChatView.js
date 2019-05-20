@@ -105,7 +105,7 @@ class ChatView extends React.Component {
     socket.emit(SOCKET.message, messageInput);
     socket.emit(SOCKET.stopped_typing);
     // clear input ---->later do this on confirm that message was recieved
-    this.setState({ messageInput: '' });
+    this.setState({ messageInput: '', getRating: false });
   };
 
   sendRating = rating => {
