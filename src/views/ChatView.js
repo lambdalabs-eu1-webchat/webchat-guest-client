@@ -9,7 +9,7 @@ import MessageComposer from '../components/MessageComposer';
 import RatingMessage from '../components/RatingMessage';
 import Typing from '../components/Typing';
 import theme from '../theme/styledTheme';
-
+import titleCase from '../utils/titleCase';
 import { DOMAIN, SOCKET, CLOSED } from '../utils/constants';
 import { getHotel } from '../requests/ajax';
 
@@ -132,7 +132,7 @@ class ChatView extends React.Component {
         <StyledHeader>
           <div className="header-names">
             <h1>{hotelName}</h1>
-            <h2>{staffName ? staffName : ' '}</h2>
+            <h2>{staffName ? titleCase(staffName) : ' '}</h2>
           </div>
           <button onClick={this.props.logout}>Logout</button>
         </StyledHeader>
