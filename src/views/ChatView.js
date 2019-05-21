@@ -7,9 +7,11 @@ import propTypes from 'prop-types';
 import Messages from '../components/Messages';
 import MessageComposer from '../components/MessageComposer';
 import RatingMessage from '../components/RatingMessage';
+import Typing from '../components/Typing';
 import theme from '../theme/styledTheme';
 
-import { DOMAIN, SOCKET } from '../utils/constants';
+import { DOMAIN, SOCKET, CLOSED } from '../utils/constants';
+import { getHotel } from '../requests/ajax';
 
 class ChatView extends React.Component {
   state = {
@@ -18,8 +20,17 @@ class ChatView extends React.Component {
     messageInput: '',
     getRating: false,
     typingUser: null,
+    hotelName: '',
+    staffName: '',
+    isCheckOut: false,
   };
   componentDidMount() {
+    // get the hotel info
+    getHotel(this.props.user.hotel_id)
+      .then(hotel => {
+        this.setState({ hotelName: hotel.name });
+      })
+      .catch(error => console.log(error));
     const socket = socketIOClient(DOMAIN);
     // save the socket in state to use in other places
     this.setState({ socket });
@@ -27,10 +38,19 @@ class ChatView extends React.Component {
       // auth this connection
       socket.emit(SOCKET.login, this.props.token);
     });
-
+    socket.on(SOCKET.check_out, () => this.setState({ isCheckOut: true }));
     socket.on(SOCKET.chat_log, chatLog => {
       // replace the old chatlog with the new one
-      this.setState({ chat_id: chatLog._id, tickets: chatLog.tickets });
+      const tickets = chatLog.tickets;
+      const lastTicket = tickets[tickets.length - 1];
+      const getRating =
+        !!lastTicket && lastTicket.status === CLOSED && !lastTicket.rating;
+      this.setState({
+        chat_id: chatLog._id,
+        tickets: chatLog.tickets,
+        staffName: chatLog.staff_member ? chatLog.staff_member.name : '',
+        getRating,
+      });
     });
 
     socket.on(SOCKET.message, messageRes => {
@@ -41,7 +61,6 @@ class ChatView extends React.Component {
         const newTickets = tickets.map((ticket, i) => {
           // making the new state of the tickets
           if (ticketLastIndex !== i) return ticket;
-
           return {
             ...ticket,
             messages: [...ticket.messages, messageRes.message],
@@ -91,7 +110,7 @@ class ChatView extends React.Component {
     socket.emit(SOCKET.message, messageInput);
     socket.emit(SOCKET.stopped_typing);
     // clear input ---->later do this on confirm that message was recieved
-    this.setState({ messageInput: '' });
+    this.setState({ messageInput: '', getRating: false });
   };
 
   sendRating = rating => {
@@ -99,25 +118,39 @@ class ChatView extends React.Component {
     this.setState({ getRating: false });
   };
   render() {
-    const { tickets, messageInput, getRating, typingUser } = this.state;
+    const {
+      tickets,
+      messageInput,
+      getRating,
+      typingUser,
+      hotelName,
+      staffName,
+      isCheckOut,
+    } = this.state;
     return (
       <StyledChatView>
-        <ButtonWrap>
+        <StyledHeader>
+          <div className="header-names">
+            <h1>{hotelName}</h1>
+            <h2>{staffName ? staffName : ' '}</h2>
+          </div>
           <button onClick={this.props.logout}>Logout</button>
-        </ButtonWrap>
+        </StyledHeader>
 
         <Messages
           tickets={tickets}
           user_id={this.props.user._id}
           getRating={true}
         />
-        {typingUser ? <p>{typingUser.name} is typing</p> : null}
+        {typingUser ? <Typing /> : null}
         {getRating ? <RatingMessage sendRating={this.sendRating} /> : null}
-        <MessageComposer
-          sendMessage={this.sendMessage}
-          setMessageInput={this.setMessageInput}
-          messageInput={messageInput}
-        />
+        {!isCheckOut ? (
+          <MessageComposer
+            sendMessage={this.sendMessage}
+            setMessageInput={this.setMessageInput}
+            messageInput={messageInput}
+          />
+        ) : null}
       </StyledChatView>
     );
   }
@@ -138,11 +171,12 @@ ChatView.propTypes = {
 
 const StyledChatView = styled.div`
   width: 45rem;
-  height: 80vh;
   margin: 3rem auto 2rem;
   padding: 2rem;
-  overflow-y: hidden;
 
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
   @media (max-width: 700px) {
     width: 100%;
     margin: 0;
@@ -154,21 +188,37 @@ const StyledChatView = styled.div`
   }
 `;
 
-const ButtonWrap = styled.div`
+const StyledHeader = styled.header`
+  display: flex;
+  background-color: ${theme.color.lightPurple};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .header-names {
+    padding-left: 10px;
+    height: 50px;
+    h1 {
+      font-size: ${theme.fontSize.xs};
+    }
+    h2 {
+      font-size: ${theme.fontSize.xxs};
+      padding-left: 5px;
+      padding-bottom: 0.4rem;
+    }
+  }
 
   button {
     background-color: #da5151;
     border-radius: ${theme.border.radius};
     border: none;
     color: white;
-    padding: 0;
+    padding: 0, 0.5rem
     height: ${theme.button.smallButton};
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    width: 100%;
-    font-size: ${theme.fontSize.xxs};
-    font-weight: bold;
+    font-size: ${theme.fontSize.xs};
+    //margin: 4px 2px;
     cursor: pointer;
   }
 `;

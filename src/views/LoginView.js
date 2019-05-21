@@ -4,6 +4,9 @@ import propTypes from 'prop-types';
 import Navbar from '../components/navbar/NavBar';
 import jwt from 'jsonwebtoken';
 import theme from '../theme/styledTheme';
+
+import Spinner from '../components/Spinner';
+
 // requests
 import { loginRequest } from '../requests/ajax';
 
@@ -11,6 +14,8 @@ class LoginView extends React.Component {
   state = {
     nameInput: '',
     passcodeInput: '',
+    loggingIn: false,
+    errorMessage: '',
   };
 
   componentDidMount() {
@@ -39,44 +44,55 @@ class LoginView extends React.Component {
 
   login = event => {
     event.preventDefault();
-    loginRequest(this.state.nameInput, this.state.passcodeInput)
-      .then(res => {
-        this.props.setUserAndToken(res.user, res.token);
-      })
-      .catch(error => {
-        // display a flash message
-        console.log(error);
-      });
+    const { nameInput, passcodeInput } = this.state;
+    if (nameInput && passcodeInput) {
+      this.setState({ loggingIn: true, errorMessage: '' });
+      loginRequest(this.state.nameInput, this.state.passcodeInput)
+        .then(res => {
+          this.props.setUserAndToken(res.user, res.token);
+        })
+        .catch(error => {
+          // display a flash message
+          this.setState({
+            loggingIn: false,
+            errorMessage: error.response.data.message,
+          });
+        });
+    } else {
+      this.setState({ errorMessage: 'Name and passcode is required.' });
+    }
   };
 
   render() {
-    const { nameInput, passcodeInput } = this.state;
+    const { nameInput, passcodeInput, loggingIn, errorMessage } = this.state;
     return (
-
       <LoginWrapper>
         <Navbar />
         <StyledLoginView>
           <h2>Login</h2>
           <form className="container">
-              <label>Name*</label>
-              <input
-                id="name"
-                name="name"
-                autoComplete="name"
-                autoFocus
-                value={nameInput}
-                onChange={event => this.handleChange(event, 'nameInput')}
-              />
-              <label>Passcode*</label>
-              <input
-                name="passcode"
-                type="passcode"
-                id="passcode"
-                autoComplete="current-passcode"
-                value={passcodeInput}
-                onChange={event => this.handleChange(event, 'passcodeInput')}
-              />
-            <button type="submit" onClick={this.login}>Login</button>
+            <label>Name*</label>
+            <input
+              id="name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+              value={nameInput}
+              onChange={event => this.handleChange(event, 'nameInput')}
+            />
+            <label>Passcode*</label>
+            <input
+              name="passcode"
+              type="passcode"
+              id="passcode"
+              autoComplete="current-passcode"
+              value={passcodeInput}
+              onChange={event => this.handleChange(event, 'passcodeInput')}
+            />
+            <button type="submit" onClick={this.login} disabled={loggingIn}>
+              {!loggingIn ? 'Login' : <Spinner />}
+            </button>
+            {errorMessage}
           </form>
         </StyledLoginView>
       </LoginWrapper>
@@ -108,17 +124,17 @@ const StyledLoginView = styled.div`
     padding: 20px 0;
     color: ${theme.color.textColor};
   }
-  
+
   form {
     display: flex;
     flex-direction: column;
-    
+
     label {
       font-size: ${theme.fontSize.xxs};
       color: ${theme.color.accentPurple};
       font-weight: bold;
     }
-    
+
     input {
       border: none;
       border-bottom: 1px solid ${theme.color.footerText};
