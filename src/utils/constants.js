@@ -3,6 +3,7 @@ export const DOMAIN = 'https://web-chat-labs.herokuapp.com';
 
 export const PATH = {
   users: '/api/users',
+  hotel: '/api/hotel',
 };
 
 export const SOCKET = {
@@ -15,4 +16,9 @@ export const SOCKET = {
   typing: 'typing',
   stopped_typing: 'stopped_typing',
   confirm_done_ticket: 'confirm_done_ticket',
+  check_out: 'check_out',
 };
+
+export const QUEUED = 'queued';
+export const ACTIVE = 'active';
+export const CLOSED = 'closed';

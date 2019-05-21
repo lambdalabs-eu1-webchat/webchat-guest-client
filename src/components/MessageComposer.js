@@ -7,9 +7,17 @@ function MessageComposer({ messageInput, setMessageInput, sendMessage }) {
   function updateInput(event) {
     setMessageInput(event.target.value);
   }
+  function handleEnterPress(event) {
+    if ('Enter' === event.key) sendMessage();
+  }
   return (
     <StyledMessageComposer>
-      <input className="flex" onChange={updateInput} value={messageInput} />
+      <input
+        onKeyPress={handleEnterPress}
+        className="flex"
+        onChange={updateInput}
+        value={messageInput}
+      />
       <button onClick={sendMessage}>
         <i className="fas fa-paper-plane" />
       </button>
@@ -27,7 +35,7 @@ const StyledMessageComposer = styled.div`
   display: flex;
   width: 100%;
   justify-content: stretch;
-  
+
   input {
     border: none;
     border-bottom: 1px solid ${theme.color.footerText};
@@ -40,7 +48,7 @@ const StyledMessageComposer = styled.div`
       outline: none;
     }
   }
-  
+
   .flex {
     flex: 1;
   }
@@ -52,15 +60,15 @@ const StyledMessageComposer = styled.div`
       outline: none;
     }
   }
-  
+
   .fa-paper-plane {
     background: transparent;
     color: ${theme.color.accentGreen};
     font-size: ${theme.fontSize.m};
     cursor: pointer;
     &:hover {
-    color: ${theme.color.accentPurple};
     transition: all 0.3s ease;
+      color: ${theme.color.accentPurple};
     }
   }
 `;
