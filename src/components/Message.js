@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 import theme from '../theme/styledTheme';
 
+import titleCase from '../utils/titleCase';
+
 function Message({ message, user_id }) {
   if (!message.sender);
   return (
     <StyledMessage left={user_id === message.sender.id}>
-      <span>{message.sender.name} : </span>
+      <span>{titleCase(message.sender.name)} : </span>
       <div>
         <span>{message.text}</span>
       </div>
@@ -39,7 +41,10 @@ const StyledMessage = styled.div`
         : `background:${theme.color.lightPurple};`}
     ${props => (props.left ? `text-align: right;` : 'text-align: left;')}
     ${props => (props.left ? `margin-left: auto;` : 'margin-right: auto;')}
-    ${props => (props.left ? `border-radius: 2rem 2rem 0.3rem 2rem` : 'border-radius: 2rem 2rem 2rem 0.3rem;')}
+    ${props =>
+      props.left
+        ? `border-radius: 2rem 2rem 0.3rem 2rem`
+        : 'border-radius: 2rem 2rem 2rem 0.3rem;'}
 `;
 
 export default Message;
