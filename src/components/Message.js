@@ -9,7 +9,7 @@ function Message({ message, user_id }) {
   if (!message.sender);
   return (
     <StyledMessage left={user_id === message.sender.id}>
-      <span>{titleCase(message.sender.name)} : </span>
+      <span className="sender">{titleCase(message.sender.name)} : </span>
       <div>
         <span>{message.text}</span>
       </div>
@@ -41,12 +41,6 @@ const StyledMessage = styled.div`
         : `background:${theme.color.lightPurple};`}
     ${props => (props.left ? `text-align: right;` : 'text-align: left;')}
     ${props => (props.left ? `margin-left: auto;` : 'margin-right: auto;')}
-<<<<<<< HEAD
-    ${props =>
-      props.left
-        ? `border-radius: 2rem 2rem 0.3rem 2rem`
-        : 'border-radius: 2rem 2rem 2rem 0.3rem;'}
-=======
     ${props =>
       props.left
         ? `border-radius: 2rem 2rem 0.3rem 2rem`
@@ -55,7 +49,6 @@ const StyledMessage = styled.div`
   .sender {
     font-weight: bold;
   }
->>>>>>> origin/master
 `;
 
 export default Message;
