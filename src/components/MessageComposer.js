@@ -67,8 +67,8 @@ const StyledMessageComposer = styled.div`
     font-size: ${theme.fontSize.m};
     cursor: pointer;
     &:hover {
-    transition: all 0.3s ease;
       color: ${theme.color.accentPurple};
+      transition: all 0.3s ease;
     }
   }
 `;

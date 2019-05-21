@@ -211,13 +211,15 @@ const StyledHeader = styled.header`
     border-radius: ${theme.border.radius};
     border: none;
     color: white;
-    padding: 0, 0.5rem;
+    padding: 0 0.5rem;
     height: ${theme.button.smallButton};
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     font-size: ${theme.fontSize.xs};
-    cursor: pointer;
+    :&hover {
+      cursor: pointer;
+    }
   }
 `;
 
