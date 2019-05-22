@@ -92,7 +92,7 @@ class LoginView extends React.Component {
             <button type="submit" onClick={this.login} disabled={loggingIn}>
               {!loggingIn ? 'Login' : <Spinner />}
             </button>
-            {errorMessage}
+            <p>{errorMessage}</p>
           </form>
         </StyledLoginView>
       </LoginWrapper>
@@ -130,9 +130,8 @@ const StyledLoginView = styled.div`
     flex-direction: column;
 
     label {
-      font-size: ${theme.fontSize.xxs};
+      font-size: ${theme.fontSize.xs};
       color: ${theme.color.accentPurple};
-      font-weight: bold;
     }
 
     input {
@@ -147,6 +146,11 @@ const StyledLoginView = styled.div`
         outline: none;
       }
     }
+  }
+  
+  p {
+    font-size: ${theme.fontSize.xs};
+    padding: 1.5rem 0;
   }
 
   button {
