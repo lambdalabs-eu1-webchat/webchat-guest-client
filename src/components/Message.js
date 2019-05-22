@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import theme from '../theme/styledTheme';
 
 import titleCase from '../utils/titleCase';
+import decode from '../utils/decodeHtml';
 
 function Message({ message, user_id }) {
   if (!message.sender);
@@ -11,7 +12,7 @@ function Message({ message, user_id }) {
     <StyledMessage left={user_id === message.sender.id}>
       <span className="sender">{titleCase(message.sender.name)} : </span>
       <div>
-        <span>{message.text}</span>
+        <span>{decode(message.text)}</span>
       </div>
     </StyledMessage>
   );
