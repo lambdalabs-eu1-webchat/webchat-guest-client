@@ -22,11 +22,12 @@ class ChatView extends React.Component {
     typingUser: null,
     hotelName: '',
     staffName: '',
-    isCheckOut: false,
+    isCheckOut: false
   };
   componentDidMount() {
+    const token = localStorage.getItem('token');
     // get the hotel info
-    getHotel(this.props.user.hotel_id)
+    getHotel(this.props.user.hotel_id, token)
       .then(hotel => {
         this.setState({ hotelName: hotel.name });
       })
@@ -49,7 +50,7 @@ class ChatView extends React.Component {
         chat_id: chatLog._id,
         tickets: chatLog.tickets,
         staffName: chatLog.staff_member ? chatLog.staff_member.name : '',
-        getRating,
+        getRating
       });
     });
 
@@ -63,7 +64,7 @@ class ChatView extends React.Component {
           if (ticketLastIndex !== i) return ticket;
           return {
             ...ticket,
-            messages: [...ticket.messages, messageRes.message],
+            messages: [...ticket.messages, messageRes.message]
           };
         });
         // set the state of the tickets
@@ -99,7 +100,7 @@ class ChatView extends React.Component {
       socket.emit(SOCKET.typing);
     }
     this.setState({
-      messageInput,
+      messageInput
     });
   };
 
@@ -125,7 +126,7 @@ class ChatView extends React.Component {
       typingUser,
       hotelName,
       staffName,
-      isCheckOut,
+      isCheckOut
     } = this.state;
     return (
       <StyledChatView>
@@ -163,10 +164,10 @@ ChatView.propTypes = {
     name: propTypes.string.isRequired,
     room: propTypes.shape({
       id: propTypes.string.isRequired,
-      name: propTypes.string.isRequired,
-    }).isRequired,
+      name: propTypes.string.isRequired
+    }).isRequired
   }).isRequired,
-  token: propTypes.string,
+  token: propTypes.string
 };
 
 const StyledChatView = styled.div`
@@ -217,7 +218,7 @@ const StyledHeader = styled.header`
     text-decoration: none;
     text-transform: uppercase;
     font-size: ${theme.fontSize.xs};
-    :&hover {
+    :&hover  {
       cursor: pointer;
     }
   }
