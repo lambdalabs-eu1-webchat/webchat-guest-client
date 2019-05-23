@@ -19,7 +19,7 @@ const theme = {
   shadow: {
     cardShadow: '0 16px 48px rgba(32, 41, 50, 0.21)',
     containerShadow: '0 0 2px 0 rgba(0, 0, 0, 0.19)',
-    buttonHover: '0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.19)',
+    buttonHover: '0 3px 10px rgba(0, 0, 0, 0.15)',
     buttonShadow: '0 0 3px 0 rgba(0, 0, 0, 0.19)',
   },
 
