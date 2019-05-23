@@ -168,6 +168,7 @@ const StyledLoginView = styled.div`
     &:hover {
       box-shadow: ${theme.shadow.buttonHover};
       cursor: pointer;
+      transition: 0.3s ease;
     }
     &:focus {
       outline: none;
